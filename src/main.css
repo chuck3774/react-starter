@@ -1,0 +1,20 @@
+.movie-list-title {
+  color: grey;
+
+}
+
+.movie-list {
+  display: grid;
+  height: 30vh;
+  margin: 2rem;
+  width: 500px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.movie-list > div {
+  border: 1px solid grey;
+}
+
+
+
