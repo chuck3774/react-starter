@@ -4,7 +4,7 @@ import '../main.css';
 var Search = (props) => (
   <div className="search-bar">
   <input className="form" type="text" onChange ={(e) => props.onChange(e)}/>
-  <button className="btn hidden-sm-down" onClick={() => props.onSubmit()} >
+  <button className="btn">
     Search
   </button>
 </div>

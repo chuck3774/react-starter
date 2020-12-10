@@ -2,18 +2,32 @@ import React from 'react';
 import exampleMovies from '../exampleMovies.js';
 import MovieList from './MovieList.jsx';
 import '../main.css';
-import Search from './Search.jsx'
+import Search from './Search.jsx';
+import AddMovie from './AddMovie.jsx';
 
 class App extends React.Component {
 
   constructor (props) {
     super(props);
 
-    this.state = {movies: exampleMovies};
+    this.state = {movies: [], movieToAdd: ''};
 
   }
 
-  handleChange(e) {
+  handleAddChange(e) {
+    let movieObject = {title: e.target.value}
+    this.setState({movies: this.state.movies, movieToAdd: movieObject}, function () {
+      console.log(this.state.movieToAdd);
+    });
+
+  }
+
+  handleAddClick() {
+    let newList = [...this.state.movies, this.state.movieToAdd]
+    this.setState({movies: newList, movieToAdd: ''})
+  }
+
+  handleSearchChange(e) {
     let list = this.state.movies;
     let filteredList = [];
    for (let i = 0; i < list.length; i ++) {
@@ -22,27 +36,23 @@ class App extends React.Component {
      }
    }
    if (filteredList[0] === undefined) {
-     this.setState({movies: [{title: 'Sorry, there was no movie found by that search. Please try again.'}]})
+     this.setState({movies: [{title: 'Sorry, there was no movie found by that search. Please try again.'}], movieToAdd: this.state.movieToAdd})
    } else {
-   this.setState({movies: filteredList});
+   this.setState({movies: filteredList, movieToAdd: this.state.movieToAdd});
    }
-
-   if (e.target.value === '') {
-     this.setState({movies: exampleMovies});
-   }
-  }
-  handleSubmit() {
-
-    console.log(document.getElementsByClassName('form'));
   }
   render(){
     return(
   <div>
     <div>
       <nav>
-        <div><Search onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)}/></div>
+        <div><AddMovie onChange={this.handleAddChange.bind(this)} onAddClick={this.handleAddClick.bind(this)}/></div>
       </nav>
-
+    </div>
+    <div>
+      <nav>
+        <div><Search onChange={this.handleSearchChange.bind(this)}/></div>
+      </nav>
     </div>
     <div>
         <div><MovieList movies={this.state.movies}/></div>

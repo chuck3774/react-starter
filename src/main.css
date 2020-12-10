@@ -16,5 +16,20 @@
   border: 1px solid grey;
 }
 
+.btn2 {
+  color: white;
+  background-color: olivedrab;
+}
+
+.btn,
+.btn2 {
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.search-bar {
+  margin-top: 10px;
+}
+
 
 
