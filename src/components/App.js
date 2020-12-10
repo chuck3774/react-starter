@@ -10,21 +10,23 @@ class App extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {movies: [], movieToAdd: ''};
+    this.state = {movies: [], movieToAdd: '', previousList: []};
 
   }
 
   handleAddChange(e) {
     let movieObject = {title: e.target.value}
-    this.setState({movies: this.state.movies, movieToAdd: movieObject}, function () {
-      console.log(this.state.movieToAdd);
-    });
+    this.setState({movies: this.state.movies, movieToAdd: movieObject, previousList: this.state.previousList});
 
   }
 
   handleAddClick() {
     let newList = [...this.state.movies, this.state.movieToAdd]
-    this.setState({movies: newList, movieToAdd: ''})
+    this.setState({movies: newList, movieToAdd: '', previousList: this.state.previousList})
+  }
+
+  handleSearchClick() {
+    this.setState({movies: this.state.movies, movieToAdd: this.state.movieToAdd, previousList: this.state.movies})
   }
 
   handleSearchChange(e) {
@@ -38,7 +40,11 @@ class App extends React.Component {
    if (filteredList[0] === undefined) {
      this.setState({movies: [{title: 'Sorry, there was no movie found by that search. Please try again.'}], movieToAdd: this.state.movieToAdd})
    } else {
-   this.setState({movies: filteredList, movieToAdd: this.state.movieToAdd});
+   this.setState({movies: filteredList, movieToAdd: this.state.movieToAdd, previousList: this.state.previousList});
+   }
+
+   if (e.target.value === '') {
+     this.setState({movies: this.state.previousList, movieToAdd: this.state.movieToAdd, previousList: this.state.previousList});
    }
   }
   render(){
@@ -51,7 +57,7 @@ class App extends React.Component {
     </div>
     <div>
       <nav>
-        <div><Search onChange={this.handleSearchChange.bind(this)}/></div>
+        <div><Search onChange={this.handleSearchChange.bind(this)} onSearchClick={this.handleSearchClick.bind(this)}/></div>
       </nav>
     </div>
     <div>
