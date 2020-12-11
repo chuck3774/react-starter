@@ -7,7 +7,7 @@
   display: grid;
   height: 30vh;
   margin: 2rem;
-  width: 500px;
+  width: 200px;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
@@ -34,9 +34,11 @@
 }
 
 .btn3 {
+  display: block;
   border-radius: 5px;
-  float: right;
-  margin-bottom: 15px;
+  float: left;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 .btn4,
@@ -56,5 +58,31 @@
 .btn3:active {
   background-color: teal;
 }
+
+.panel {
+  display: none;
+  color: black;
+  margin-top: 15px;
+}
+
+.movie-info {
+  display: block;
+}
+
+.movie-data {
+  display: block;
+}
+
+.image {
+  height: 200px;
+  width: 200px;
+  float: left;
+}
+
+.title {
+  background-color: grey;
+}
+
+
 
 

@@ -121,7 +121,7 @@ class App extends React.Component {
   }
   render(){
     return(
-  <div>
+  <div className="main-body">
     <div>
       <nav>
         <div><AddMovie onChange={this.handleAddChange.bind(this)} onAddClick={this.handleAddClick.bind(this)}/></div>
